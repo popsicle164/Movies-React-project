@@ -8,9 +8,18 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      movie_library: []
+      movie_library: [],
+      filterText: "",
     }
 
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
   }
 
   componentDidMount()
@@ -37,12 +46,14 @@ class App extends React.Component {
     let movies = [];
     for(let i = 0; i < this.state.movie_library.length; i++)
     {
-      movies.push(<Movie poster_path = {this.state.movie_library[i].poster_path} title={this.state.movie_library[i].title} release_date = {this.state.movie_library[i].release_date} vote_average = {this.state.movie_library[i].vote_average}/>)
+      if (this.state.movie_library[i].title.toLowerCase().includes(this.state.filterText) === true) {
+        movies.push(<Movie poster_path = {this.state.movie_library[i].poster_path} title={this.state.movie_library[i].title} release_date = {this.state.movie_library[i].release_date} vote_average = {this.state.movie_library[i].vote_average}/>)
+      }
     }
 
     return (
       <div>
-        <Search />
+        <Search filterText = {this.state.filterText} onFilterTextChange={this.handleFilterTextChange}/>
         <div className="libraryContainer">
           {movies}
         </div>
