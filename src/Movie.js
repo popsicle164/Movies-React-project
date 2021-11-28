@@ -4,11 +4,6 @@ import './App.css';
 class Movie extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-
-    }
-
   }
 
   render() {

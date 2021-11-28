@@ -10,7 +10,6 @@ body {
 .movieContainer {
   width: 20%;
   display: inline-block;
-  /* border: 1px solid white; */
   padding: 1%;
   margin: 2%;
   position: relative;
@@ -63,7 +62,7 @@ body {
 }
 
 .searchContainer input {
-  width: 30%;
+  width: 35%;
   border-radius: 15px;
   background-color: rgb(27, 27, 27);
   color: white;
@@ -87,4 +86,57 @@ body {
   .movieContainer {
     width: 50%;
   }
+}
+
+/* .modalDisplay {
+  display: none;
+} */
+
+.modalContainer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalMain img {
+  width: 60%;
+  margin: auto;
+  padding: 1%;
+}
+
+.modalDescription {
+  width: 60%;
+  margin: auto;
+  padding: 1%;
+}
+
+.close {
+  width: 60%;
+  text-align: right;
+  margin: auto;
+  padding: 1%;
+}
+
+.close:hover,
+.close:focus {
+  color: rgba(145, 145, 145, 0.8);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.xSymbol {
+  font-size: 24px;
 }
