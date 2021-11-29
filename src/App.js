@@ -11,17 +11,36 @@ class App extends React.Component {
     this.state = {
       movie_library: [],
       filterText: "",
+      show: false,
+      modalOverview: "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
+      modalBackdrop_path: "/70nxSw3mFBsGmtkvcs91PbjerwD.jpg"
+      // hardcode overview and backdrop_path to pass into modal component. will eventually be created by clicks inside the movie components
     }
 
-    console.log(this.state.movie_library.title);
+    this.modalData = this.modalData.bind(this);
 
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
 
   }
 
-  handleFilterTextChange(filterText) {
+
+  modalData (overview, backdrop_path) {
+    console.log("HEY OVERVIEW! " + overview);
+    console.log("HEY BD PATH! " + backdrop_path);
     this.setState({
-      filterText: filterText
+      modalOverview: overview,
+      modalBackdrop_path: backdrop_path,
+      show: true
+    });
+  }
+
+  hideModal = e => {
+    this.setState({show: false});
+  }
+
+  handleFilterTextChange(userInput) {
+    this.setState({
+      filterText: userInput
     });
   }
 
@@ -46,15 +65,17 @@ class App extends React.Component {
     {
       if (this.state.movie_library[i].title.toLowerCase().includes(this.state.filterText) === true) {
         movies.push(
-          <Movie poster_path = {this.state.movie_library[i].poster_path} title = {this.state.movie_library[i].title} release_date = {this.state.movie_library[i].release_date} vote_average = {this.state.movie_library[i].vote_average}/>
+          <Movie poster_path = {this.state.movie_library[i].poster_path} title = {this.state.movie_library[i].title} release_date = {this.state.movie_library[i].release_date} vote_average = {this.state.movie_library[i].vote_average} modalData = {this.modalData} overview = {this.state.movie_library[i].overview} backdrop_path = {this.state.movie_library[i].backdrop_path}/>
         )
       }
     }
 
+
+
     return (
       <div>
-        <Modal overview = {this.state.movie_library.overview} backdrop_path = {this.state.movie_library.backdrop_path} title = {this.state.movie_library.title}/>
-        <Search filterText = {this.state.filterText} onFilterTextChange = {this.handleFilterTextChange}/>
+        <Modal overview = {this.state.modalOverview} backdrop_path = {this.state.modalBackdrop_path} show={this.state.show} hideModal = {this.hideModal}/>
+        <Search filterText = {this.state.filterText} handleFilterTextChange = {this.handleFilterTextChange}/>
         <div className="libraryContainer">
           {movies}
         </div>
@@ -69,3 +90,4 @@ export default App;
   // -needs index of movie_library to know what props to get for modal data
     // Movie component will need to pass this index to a state living in App component
   // -needs visibility to toggle on and off
+    // use a boolean statement show=true and toggle it with buttons

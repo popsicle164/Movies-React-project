@@ -70,19 +70,19 @@ body {
   padding: 10px;
 }
 
-@media all and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   .movieContainer {
     width: 25%;
   }
 }
 
-@media all and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .movieContainer {
     width: 35%;
   }
 }
 
-@media all and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .movieContainer {
     width: 50%;
   }

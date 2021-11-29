@@ -5,19 +5,19 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.tempFunction = this.tempFunction.bind(this);
 
   }
 
-  handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
+  tempFunction(e) {
+    this.props.handleFilterTextChange(e.target.value);
   }
 
   render() {
     return (
       <div className="searchContainer">
         <input type="text" placeholder="Filter by title" value={this.props.filterText}
-          onChange={this.handleFilterTextChange}/>
+          onChange={this.tempFunction}/>
       </div>
     );
   }

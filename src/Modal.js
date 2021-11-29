@@ -5,25 +5,21 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //     display: "hidden",
-    // }
-
-    this.hideModal = this.hideModal.bind(this);
-  }
-
-  hideModal() {
-
   }
 
   render() {
+
+    if(!this.props.show){
+      return (null);
+  }
+
     return (
         <div className="modalDisplay">
             <div className="modalContainer">
                 <div className="modalMain">
-                    <div className="close"><span className="xSymbol">&times;</span> Close</div>
-                    <img src="https://image.tmdb.org/t/p/w500/70nxSw3mFBsGmtkvcs91PbjerwD.jpg" />
-                    <div className="modalDescription">After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.</div>
+                    <div onClick={this.props.hideModal} className="close"><span className="xSymbol">&times;</span> Close</div>
+                    <img src={"https://image.tmdb.org/t/p/w500" + this.props.backdrop_path} />
+                    <div className="modalDescription">{this.props.overview}</div>
                 </div>
             </div>
         </div>
