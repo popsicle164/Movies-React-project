@@ -12,9 +12,8 @@ class App extends React.Component {
       movie_library: [],
       filterText: "",
       show: false,
-      modalOverview: "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
-      modalBackdrop_path: "/70nxSw3mFBsGmtkvcs91PbjerwD.jpg"
-      // hardcode overview and backdrop_path to pass into modal component. will eventually be created by clicks inside the movie components
+      modalOverview: "",
+      modalBackdrop_path: ""
     }
 
     this.modalData = this.modalData.bind(this);
@@ -25,8 +24,6 @@ class App extends React.Component {
 
 
   modalData (overview, backdrop_path) {
-    console.log("HEY OVERVIEW! " + overview);
-    console.log("HEY BD PATH! " + backdrop_path);
     this.setState({
       modalOverview: overview,
       modalBackdrop_path: backdrop_path,
@@ -63,7 +60,7 @@ class App extends React.Component {
     let movies = [];
     for(let i = 0; i < this.state.movie_library.length; i++)
     {
-      if (this.state.movie_library[i].title.toLowerCase().includes(this.state.filterText) === true) {
+      if (this.state.movie_library[i].title.toLowerCase().includes(this.state.filterText.toLowerCase()) === true) {
         movies.push(
           <Movie poster_path = {this.state.movie_library[i].poster_path} title = {this.state.movie_library[i].title} release_date = {this.state.movie_library[i].release_date} vote_average = {this.state.movie_library[i].vote_average} modalData = {this.modalData} overview = {this.state.movie_library[i].overview} backdrop_path = {this.state.movie_library[i].backdrop_path}/>
         )
@@ -85,9 +82,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// 1 modal
-  // -needs index of movie_library to know what props to get for modal data
-    // Movie component will need to pass this index to a state living in App component
-  // -needs visibility to toggle on and off
-    // use a boolean statement show=true and toggle it with buttons
