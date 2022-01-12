@@ -14,14 +14,12 @@ class Modal extends React.Component {
   }
 
     return (
-        <div className="modalDisplay">
-            <div className="modalContainer">
-                <div className="modalMain">
-                    <div onClick={this.props.hideModal} className="close"><span className="xSymbol">&times;</span> Close</div>
-                    <img src={"https://image.tmdb.org/t/p/w500" + this.props.backdrop_path} />
-                    <div className="modalDescription">{this.props.overview}</div>
-                </div>
-            </div>
+        <div className="modalContainer">
+          <div className="modalMain">
+            <div onClick={this.props.hideModal} className="close"><span className="xSymbol">&times;</span> Close</div>
+            <img src={"https://image.tmdb.org/t/p/w500" + this.props.backdrop_path} />
+            <div className="modalDescription">{this.props.overview}</div>
+          </div>
         </div>
     );
   }

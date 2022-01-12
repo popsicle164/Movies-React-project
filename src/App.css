@@ -93,10 +93,6 @@ body {
   }
 }
 
-/* .modalDisplay {
-  display: none;
-} */
-
 .modalContainer {
   position: fixed;
   z-index: 1;
